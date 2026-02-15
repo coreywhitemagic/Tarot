@@ -19,7 +19,7 @@ h1 {
     font-size: 38px;
     letter-spacing: 2px;
     color: #f0d878;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     text-shadow: 0 0 10px rgba(240,216,120,0.6);
 }
 h2 {
@@ -61,6 +61,23 @@ h2 {
     padding: 14px 16px;
     opacity: 1;
 }
+#random-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    background: #f0d878;
+    color: #2c2445;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+#random-btn:hover {
+    background: #e6c960;
+    transform: scale(1.05);
+}
 @media (max-width: 600px) {
     h1 { font-size: 28px; }
     body { padding: 20px 12px; }
@@ -73,10 +90,26 @@ function toggleCard(element) {
     allCards.forEach(c => { if (c !== card) c.classList.remove('active'); });
     card.classList.toggle('active');
 }
+
+function openRandomCard() {
+    const cards = document.querySelectorAll('.card');
+    const randomIndex = Math.floor(Math.random() * cards.length);
+    const card = cards[randomIndex];
+
+    // Close all other cards
+    cards.forEach(c => c.classList.remove('active'));
+
+    // Open the random card
+    card.classList.add('active');
+
+    // Scroll to the card smoothly
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
 </script>
 </head>
 <body>
 <h1>✧ Tarot Readings ✧</h1>
+<button id="random-btn" onclick="openRandomCard()">🔮 Random Card</button>
 
 <div class="container">
 
