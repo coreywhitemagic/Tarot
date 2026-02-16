@@ -14,7 +14,7 @@ body {
     color: #f2f2f2;
 }
 
-    .header-container {
+.header-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -25,19 +25,20 @@ body {
 h1 {
     font-family: 'Cinzel', serif;
     font-size: 50px;
-    display: inline-block;
+    display: inline-block;       /* keep transform working */
     transform: scale(1.5);
     transform-origin: center;
     text-align: center;
     letter-spacing: 2px;
-    color: #f0d878;                   /* starting gold */
+    color: #f0d878;              /* starting gold */
     line-height: 1.2;
     word-wrap: break-word;
     max-width: 90%;
-    animation: goldPulse 2s infinite alternate; /* animate gold color */
+    will-change: color;           /* hint to browser to animate color */
+    animation: goldPulse 2s infinite alternate linear;
 }
 
-/* Animation from gold to bright gold */
+/* Keyframes for gold to bright gold */
 @keyframes goldPulse {
     0%   { color: #f0d878; }   /* normal gold */
     100% { color: #fff18f; }   /* brighter gold */
